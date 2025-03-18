@@ -21,7 +21,7 @@ g = Github(os.getenv("GITHUB_TOKEN"))
 
 # Initialize Groq client with LangChain
 llm = ChatGroq(
-    model="mixtral-8x7b-32768", 
+    model="mixtral-8x7b-32768",
     groq_api_key=os.getenv("GROQ_API_KEY"),
     temperature=0.5
 )
@@ -114,7 +114,7 @@ def process_github_repo(repo_name, user_query):
 
     # Generate response from the model
     response = generate_response(user_query, relevant_files_content)
-    
+
     return {
         "query": user_query,
         "repo": repo_name,
@@ -125,11 +125,11 @@ def process_github_repo(repo_name, user_query):
 def process_pull_request(repo_name, pr_number):
     # Update the RAG index with the repository content
     update_rag_index(repo_name)
-    
+
     # Get the pull request object
     repo = g.get_repo(repo_name)
     pull_request = repo.get_pull(pr_number)
-    
+
     comments = []
     for file in pull_request.get_files():
         file_path = file.filename
@@ -137,9 +137,9 @@ def process_pull_request(repo_name, pr_number):
             relevant_files_content = repo_files[file_path]
             review_comment = generate_response(f"Review the file: {file_path}", relevant_files_content)
             comments.append(f"**{file_path}**\n{review_comment}")
-    
+
     review_body = "\n\n".join(comments)
-    
+
     try:
         pull_request.create_review(
             body=review_body if review_body else "Automated code review feedback",
@@ -150,18 +150,51 @@ def process_pull_request(repo_name, pr_number):
         print(f"Error creating review: {e}")
         return {"status": "Error creating review", "error": str(e)}
 
+import requests
+
+def get_open_pr_numbers(owner, repo):
+    """
+    Fetches open pull requests from a GitHub repository and returns a list of PR numbers.
+
+    :param owner: Repository owner (e.g., 'Spirizeon')
+    :param repo: Repository name (e.g., 'claxvim')
+    :param token: (Optional) GitHub personal access token for authentication
+    :return: List of open PR numbers
+    """
+    url = f"https://api.github.com/repos/{owner}/{repo}/pulls"
+    headers = {}
+
+    headers["Authorization"] = f"token {os.getenv('GITHUB_TOKEN')}"
+
+    response = requests.get(url, headers=headers)
+
+    if response.status_code == 200:
+        pr_list = response.json()
+        return [pr['number'] for pr in pr_list]
+    else:
+        print(f"Error: {response.status_code}, {response.json()}")
+        return []
+
+
+
+
 # Example usage:
 if __name__ == '__main__':
     # Example 1: Process a repository with a query
+    """
     repo_name = 'Spirizeon/claxvim'  # Default repository
     user_query = "What improvements can be made to error handling?"
     result = process_github_repo(repo_name, user_query)
     print(f"Query: {result['query']}")
     print(f"Relevant files: {result['relevant_files']}")
     print(f"Response: {result['response']}")
-    
-    # Example 2: Process a pull request
-    # pr_result = process_pull_request('Spirizeon/claxvim', 1)
-    # print(f"PR Review Status: {pr_result['status']}")
-    # if 'review' in pr_result:
-    #     print(f"Review: {pr_result['review']}")
+    """
+    open_prs = get_open_pr_numbers("spirizeon","claxvim")
+    print(f"Open PRs: {open_prs}")
+    if open_prs ==  []:
+        print(f"Nothing to review!")
+    for i in open_prs:
+        pr_result = process_pull_request('Spirizeon/claxvim', i)
+        print(f"PR Review Status: {pr_result['status']}")
+        if 'review' in pr_result:
+            print(f"Review: {pr_result['review']}")

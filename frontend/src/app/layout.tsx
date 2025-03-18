@@ -4,8 +4,6 @@ import "./globals.css";
 import GoogleGeminiEffect from "@/components/Gemini";
 import GlobeDemo from "@/components/Globe";
 import LayoutGridDemo from "@/components/Grid";
-import LinkPreviewDemoSecond from "@/components/Preview";
-import { Line } from "@react-three/drei";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
