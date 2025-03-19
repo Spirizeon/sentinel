@@ -6,6 +6,9 @@ import FooterSection from "@/components/Footer";
 
 import * as React from "react";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import GoogleGeminiEffect from "@/components/Gemini";
+import GlobeDemo from "@/components/Globe";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
