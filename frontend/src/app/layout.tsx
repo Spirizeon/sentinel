@@ -4,6 +4,8 @@ import "./globals.css";
 import GoogleGeminiEffect from "@/components/Gemini";
 import GlobeDemo from "@/components/Globe";
 import LayoutGridDemo from "@/components/Grid";
+import { CardHoverEffectDemo } from "@/components/Cards";
+import { TextHoverEffectDemo } from "@/components/Hover";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,7 +33,8 @@ export default function RootLayout({
       >
         <GoogleGeminiEffect />
         <GlobeDemo />
-        <LayoutGridDemo />
+        <CardHoverEffectDemo />
+        <TextHoverEffectDemo />
         {children}
       </body>
     </html>
