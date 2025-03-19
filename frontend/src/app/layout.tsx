@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import GoogleGeminiEffect from "@/components/Gemini";
-import GlobeDemo from "@/components/Globe";
-import LayoutGridDemo from "@/components/Grid";
-import { CardHoverEffectDemo } from "@/components/Cards";
-import { TextHoverEffectDemo } from "@/components/Hover";
+import Nav from "@/components/Nav";
+import FooterSection from "@/components/Footer";
+
+import * as React from "react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -21,6 +21,13 @@ export const metadata: Metadata = {
   description: "supercharged oss",
 };
 
+export function ThemeProvider({
+  children,
+  ...props
+}: React.ComponentProps<typeof NextThemesProvider>) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,11 +38,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <GoogleGeminiEffect />
-        <GlobeDemo />
-        <CardHoverEffectDemo />
-        <TextHoverEffectDemo />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Nav />
+          {children}
+          <FooterSection />
+        </ThemeProvider>
       </body>
     </html>
   );

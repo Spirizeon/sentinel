@@ -28,7 +28,7 @@ export const GoogleGeminiEffect = ({
         {description ||
           `Code reviews done in a flash, through your own account!`}
       </p>
-      <div className="w-full h-[890px] -top-80 md:-top-70  flex items-center justify-center bg-red-transparent absolute ">
+      <div className="w-full h-[890px] -top-70 md:-top-70  flex items-center justify-center bg-red-transparent absolute ">
         <button className="font-bold bg-white rounded-full md:px-4 md:py-2 px-2 py-1 md:mt-24 mt-8 z-30 md:text-base text-black text-xs  w-fit mx-auto ">
           <a href="https://github.com/spirizeon/sentinel" target="_blank">
             Try Now!
