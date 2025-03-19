@@ -1,6 +1,5 @@
 import GoogleGeminiEffect from "@/components/Gemini";
 import GlobeDemo from "@/components/Globe";
-import LayoutGridDemo from "@/components/Grid";
 import { CardHoverEffectDemo } from "@/components/Cards";
 import { TextHoverEffectDemo } from "@/components/Hover";
 import GlowingEffectDemo from "@/components/Glow";
