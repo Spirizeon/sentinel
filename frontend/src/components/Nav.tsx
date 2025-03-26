@@ -64,23 +64,6 @@ export function Nav() {
             </NavigationMenuLink>
           </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            <NavigationMenuLink>
-              <Link href="/deploy">get started</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuLink>
-              <Link href="/dashboard">dashboard</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuLink>
-              <Link href="/pricing">pricing</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
           <div className="flex justify-end">
             <ModeToggle />
           </div>
