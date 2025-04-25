@@ -1,0 +1,181 @@
+\label{index_md_README}%
+\Hypertarget{index_md_README}%
+ \hypertarget{index_autotoc_md0}{}\doxysubsection{Overview}\label{index_autotoc_md0}
+{\bfseries{sentinel}} is a repository containing Python and Next.\+js components designed to integrate Git\+Hub repository analysis, semantic search, and AI-\/driven code reviews. The backend leverages Python libraries such as Lang\+Chain, Groq, Sentence Transformers, and FAISS for semantic indexing and retrieval. The frontend is built with Next.\+js, React, and Tailwind CSS.
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md2}{}\doxysubsection{Repository Structure}\label{index_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{spirizeon-\/sentinel/}
+\DoxyCodeLine{├── README.md}
+\DoxyCodeLine{├── requirements.txt}
+\DoxyCodeLine{├── sentinel.py}
+\DoxyCodeLine{└── frontend/}
+\DoxyCodeLine{    ├── README.md}
+\DoxyCodeLine{    ├── eslint.config.mjs}
+\DoxyCodeLine{    ├── next.config.ts}
+\DoxyCodeLine{    ├── package-\/lock.json}
+\DoxyCodeLine{    ├── package.json}
+\DoxyCodeLine{    ├── postcss.config.mjs}
+\DoxyCodeLine{    ├── tsconfig.json}
+\DoxyCodeLine{    ├── .gitignore}
+\DoxyCodeLine{    ├── public/}
+\DoxyCodeLine{    └── src/}
+\DoxyCodeLine{        ├── app/}
+\DoxyCodeLine{        │   ├── globals.css}
+\DoxyCodeLine{        │   ├── layout.tsx}
+\DoxyCodeLine{        │   └── page.tsx}
+\DoxyCodeLine{        ├── components/}
+\DoxyCodeLine{        │   ├── Gemini.tsx}
+\DoxyCodeLine{        │   ├── Globe.tsx}
+\DoxyCodeLine{        │   ├── Grid.tsx}
+\DoxyCodeLine{        │   └── ui/}
+\DoxyCodeLine{        │       ├── globe.tsx}
+\DoxyCodeLine{        │       ├── google-\/gemini-\/effect.tsx}
+\DoxyCodeLine{        │       └── layout-\/grid.tsx}
+\DoxyCodeLine{        ├── data/}
+\DoxyCodeLine{        │   ├── globe.json}
+\DoxyCodeLine{        │   └── music\_courses.json}
+\DoxyCodeLine{        └── lib/}
+\DoxyCodeLine{            └── utils.ts}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md4}{}\doxysubsection{Backend (\+Python)}\label{index_autotoc_md4}
+\hypertarget{index_autotoc_md5}{}\doxysubsubsection{$<$strong$>$\+Main Components\+:$<$/strong$>$}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\bfseries{sentinel.\+py}}\+: Core Python script responsible for fetching Git\+Hub repositories, embedding files using Sentence Transformers, indexing embeddings with FAISS, and generating AI-\/driven code reviews using Lang\+Chain and Groq.
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysubsubsection{$<$strong$>$\+Key Functionalities\+:$<$/strong$>$}\label{index_autotoc_md6}
+
+\begin{DoxyItemize}
+\item {\bfseries{Git\+Hub Integration}}\+: Fetches repository files and pull requests using Py\+Github.
+\item {\bfseries{Semantic Search}}\+: Embeds file contents into vector representations using Sentence Transformers ({\ttfamily all-\/\+Mini\+LM-\/\+L6-\/v2}) and indexes them with FAISS.
+\item {\bfseries{AI-\/driven Reviews}}\+: Generates constructive feedback on code quality, readability, optimization opportunities, robustness, security issues, and best practices using Lang\+Chain with Groq\textquotesingle{}s {\ttfamily mixtral-\/8x7b-\/32768} model.
+\end{DoxyItemize}\hypertarget{index_autotoc_md7}{}\doxysubsubsection{$<$strong$>$\+Important Functions\+:$<$/strong$>$}\label{index_autotoc_md7}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Function Name   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Description    }\\\cline{1-2}
+\endhead
+{\ttfamily fetch\+\_\+github\+\_\+repo\+\_\+files}   &Retrieves files from a specified Git\+Hub repository.    \\\cline{1-2}
+{\ttfamily update\+\_\+rag\+\_\+index}   &Updates the FAISS index with embeddings of the latest repository files.    \\\cline{1-2}
+{\ttfamily search\+\_\+faiss}   &Performs semantic search within the indexed embeddings.    \\\cline{1-2}
+{\ttfamily generate\+\_\+response}   &Generates AI-\/driven responses based on user queries and context.    \\\cline{1-2}
+{\ttfamily process\+\_\+github\+\_\+repo}   &Processes a Git\+Hub repository to answer user queries.    \\\cline{1-2}
+{\ttfamily process\+\_\+pull\+\_\+request}   &Automatically generates review comments for open pull requests.   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{index_autotoc_md8}{}\doxysubsubsection{$<$strong$>$\+Dependencies (requirements.\+txt)\+:$<$/strong$>$}\label{index_autotoc_md8}
+Key libraries include\+:
+\begin{DoxyItemize}
+\item Lang\+Chain ecosystem ({\ttfamily langchain}, {\ttfamily langchain-\/core}, {\ttfamily langchain-\/community}, {\ttfamily langchain-\/groq})
+\item Groq API ({\ttfamily groq})
+\item Sentence Transformers ({\ttfamily sentence-\/transformers})
+\item FAISS ({\ttfamily faiss-\/cpu})
+\item Py\+Github ({\ttfamily Py\+Github})
+\item Flask (for potential API development)
+\item numpy, requests, python-\/dotenv
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md10}{}\doxysubsection{Frontend (\+Next.\+js)}\label{index_autotoc_md10}
+The frontend is built with Next.\+js 15.\+x and React 19.\+x, styled using Tailwind CSS.\hypertarget{index_autotoc_md11}{}\doxysubsubsection{$<$strong$>$\+Main Components\+:$<$/strong$>$}\label{index_autotoc_md11}
+
+\begin{DoxyItemize}
+\item {\bfseries{Gemini.\+tsx}}, {\bfseries{Globe.\+tsx}}, {\bfseries{Grid.\+tsx}}\+: UI components for interactive visualizations.
+\item {\bfseries{Layout Components}}\+: Define global styles and page layouts.
+\end{DoxyItemize}\hypertarget{index_autotoc_md12}{}\doxysubsubsection{$<$strong$>$\+Project Setup\+:$<$/strong$>$}\label{index_autotoc_md12}
+To run the frontend locally\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{npm install}
+\DoxyCodeLine{}
+\DoxyCodeLine{npm run dev \# or yarn dev / pnpm dev / bun dev}
+
+\end{DoxyCode}
+
+
+Visit {\ttfamily \href{http://localhost:3000}{\texttt{ http\+://localhost\+:3000}}} to view the application.\hypertarget{index_autotoc_md13}{}\doxysubsubsection{$<$strong$>$\+Dependencies (package.\+json)\+:$<$/strong$>$}\label{index_autotoc_md13}
+Key dependencies include\+:
+\begin{DoxyItemize}
+\item Next.\+js 15.\+x ({\ttfamily next})
+\item React 19.\+x ({\ttfamily react}, {\ttfamily react-\/dom})
+\item Three.\+js ecosystem ({\ttfamily three}, {\ttfamily @react-\/three/fiber}, {\ttfamily @react-\/three/drei})
+\item Tailwind CSS ({\ttfamily tailwindcss}, {\ttfamily @tailwindcss/postcss})
+\item Radix UI components ({\ttfamily @radix-\/ui/react-\/hover-\/card})
+\item ESLint for code quality enforcement
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md15}{}\doxysubsection{Usage Examples}\label{index_autotoc_md15}
+\hypertarget{index_autotoc_md16}{}\doxysubsubsection{$<$strong$>$\+Process Repository Query (\+Python Backend)$<$/strong$>$}\label{index_autotoc_md16}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{repo\_name = 'Spirizeon/claxvim'}
+\DoxyCodeLine{user\_query = "{}What improvements can be made to error handling?"{}}
+\DoxyCodeLine{result = process\_github\_repo(repo\_name, user\_query)}
+\DoxyCodeLine{}
+\DoxyCodeLine{print(f"{}Query: \{result['query']\}"{})}
+\DoxyCodeLine{print(f"{}Relevant files: \{result['relevant\_files']\}"{})}
+\DoxyCodeLine{print(f"{}Response: \{result['response']\}"{})}
+
+\end{DoxyCode}
+\hypertarget{index_autotoc_md17}{}\doxysubsubsection{$<$strong$>$\+Review Open Pull Requests (\+Python Backend)$<$/strong$>$}\label{index_autotoc_md17}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{open\_prs = get\_open\_pr\_numbers("{}spirizeon"{}, "{}claxvim"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{if not open\_prs:}
+\DoxyCodeLine{    print("{}Nothing to review!"{})}
+\DoxyCodeLine{}
+\DoxyCodeLine{for pr\_number in open\_prs:}
+\DoxyCodeLine{    pr\_result = process\_pull\_request('Spirizeon/claxvim', pr\_number)}
+\DoxyCodeLine{    print(f"{}PR Review Status: \{pr\_result['status']\}"{})}
+\DoxyCodeLine{    if 'review' in pr\_result:}
+\DoxyCodeLine{        print(f"{}Review Comments:\(\backslash\)n\{pr\_result['review']\}"{})}
+
+\end{DoxyCode}
+
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md19}{}\doxysubsection{Deployment}\label{index_autotoc_md19}
+The frontend can be easily deployed on Vercel\+:
+
+
+\begin{DoxyEnumerate}
+\item Connect your Git\+Hub repository to Vercel.
+\item Configure build commands as per Next.\+js defaults.
+\item Deploy directly from the Vercel dashboard.
+\end{DoxyEnumerate}
+
+For backend deployment\+:
+\begin{DoxyItemize}
+\item Containerize the Python backend using Docker.
+\item Deploy on cloud platforms like AWS ECS, Google Cloud Run, or Azure Container Instances.
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md21}{}\doxysubsection{Contribution Guidelines}\label{index_autotoc_md21}
+To contribute\+:
+
+
+\begin{DoxyEnumerate}
+\item Fork the repository.
+\item Create a new feature branch ({\ttfamily git checkout -\/b feature/your-\/feature-\/name}).
+\item Commit your changes (`git commit -\/am \textquotesingle{}Add feature'{\ttfamily ).}
+\item {\ttfamily Push your branch (}git push origin feature/your-\/feature-\/name\`{}).
+\item Open a Pull Request on Git\+Hub.
+\end{DoxyEnumerate}
+
+\DoxyHorRuler{0}
+\hypertarget{index_autotoc_md23}{}\doxysubsection{License}\label{index_autotoc_md23}
+This project is licensed under the MIT License. 
